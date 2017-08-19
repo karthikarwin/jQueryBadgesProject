@@ -6,8 +6,7 @@ $(function() {
     dataType: 'jsonp',
     success: function(response) {
       // handle response
-	  console.log(response.badges);
-	  addCourses(response.badges);
+	  addCourses(response.courses.completed);
     }
   });
   
@@ -20,7 +19,7 @@ $(function() {
 		 }).appendTo(badges);
 		 
 		 $("<h3 />", {
-			text : course.name 
+			text : course.title 
 		 }).appendTo($course);
 		 
 		 $("<img />", {
@@ -28,7 +27,7 @@ $(function() {
 		 }).appendTo($course);
 		 
 		 $("<a />", {
-			 href : course.course_url,
+			 href : course.url,
 			 'class' : "btn btn-primary",
 			 target : "_blank",
 			 text : "View Course"
