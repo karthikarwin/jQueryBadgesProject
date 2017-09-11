@@ -7,6 +7,7 @@ $(function() {
     success: function(response) {
       // handle response
 	  addCourses(response.courses.completed);
+	  addBadges(response.badges);
     }
   });
   
@@ -16,7 +17,7 @@ $(function() {
 	  courses.forEach(function(course) {
 		 var $course = $("<div />", {
 			'class' : 'course'
-		 }).appendTo(badges);
+		 }).appendTo($badges);
 		 
 		 $("<h3 />", {
 			text : course.title 
@@ -32,6 +33,31 @@ $(function() {
 			 target : "_blank",
 			 text : "View Course"
 		 }).appendTo($course);
+	  });
+  }
+  
+  function addBadges(badges) {
+	  var $badges2 = $("#badges2");
+	  
+	  badges.forEach(function(badge) {
+		 var $badge = $("<div />", {
+			'class' : 'course'
+		 }).appendTo($badges2);
+		 
+		 $("<h3 />", {
+			text : badge.name 
+		 }).appendTo($badge);
+		 
+		 $("<img />", {
+			 src: badge.badge
+		 }).appendTo($badge);
+		 
+		 $("<a />", {
+			 href : badge.course_url,
+			 'class' : "btn btn-primary",
+			 target : "_blank",
+			 text : "View Course"
+		 }).appendTo($badge);
 	  });
   }
 
